@@ -4,158 +4,415 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Phillip Grindvold Lusk — Portefolio</title>
+
   <style>
-    :root{
-      --bg:#08070a;
-      --panel:#0f0f13;
-      --muted:#9aa0a6;
-      --accent:#6ee7b7;
-      --glass: rgba(255,255,255,0.03);
-      --maxw:1100px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    :root {
+      --bg: #08070a;
+      --panel: #0f0f13;
+      --muted: #9aa0a6;
+      --accent: #6ee7b7;
+      --glass: rgba(255, 255, 255, 0.03);
+      --maxw: 1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
-    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#050507);color:#e6eef0}
-    .wrap{max-width:var(--maxw);margin:40px auto;padding:28px;}
-    header{display:flex;gap:24px;align-items:center}
-    .avatar{width:140px;height:140px;border-radius:12px;overflow:hidden;flex:0 0 140px;border:1px solid rgba(255,255,255,0.06);box-shadow:0 6px 18px rgba(0,0,0,0.6)}
-    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-    h1{margin:0;font-size:28px}
-    .tag{color:var(--accent);font-weight:600}
-    .lead{color:var(--muted);max-width:820px;margin-top:8px}
 
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-top:34px}
-    .panel{background:var(--panel);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
-    .section{margin-bottom:18px}
-    h2{margin:6px 0 12px 0;font-size:18px}
-    .muted{color:var(--muted);font-size:14px}
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: linear-gradient(180deg, var(--bg), #050507);
+      color: #e6eef0;
+    }
 
-    .videos{display:grid;grid-template-columns:repeat(1,1fr);gap:12px}
-    .video-card{background:var(--glass);padding:8px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
-    .video-card iframe{width:100%;height:260px;border:0;border-radius:6px}
+    .wrap {
+      max-width: var(--maxw);
+      margin: 40px auto;
+      padding: 28px;
+    }
 
-    .meta{display:flex;flex-direction:column;gap:8px}
-    .info-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
-    .info-list li{font-size:14px;color:var(--muted)}
+    header {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
 
-    .projects{display:grid;gap:8px}
-    .project{padding:10px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.02)}
-    .project a{color:var(--accent);text-decoration:none}
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex: 0 0 140px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+    }
 
-    footer{margin-top:28px;padding:12px;text-align:center;color:var(--muted);font-size:13px}
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-    /* Responsive */
-    @media (max-width:900px){
-      .grid{grid-template-columns:1fr}
-      .avatar{width:110px;height:110px;flex:0 0 110px}
-      .video-card iframe{height:200px}
+    h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .tag {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 820px;
+      margin-top: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 28px;
+      margin-top: 34px;
+    }
+
+    .panel {
+      background: var(--panel);
+      padding: 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+    }
+
+    .section {
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 6px 0 12px 0;
+      font-size: 18px;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .videos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
+
+    /* VIDEO CARD STYLES */
+    .video-card, .youtube-card, .nrk-wide {
+      background: var(--glass);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+    }
+
+    .video-card:hover,
+    .youtube-card:hover,
+    .nrk-wide:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    }
+
+    .video-card iframe {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border: none;
+      display: block;
+    }
+
+    .youtube-card iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+      border-radius: 10px;
+    }
+
+    /* NRK Thumbnail */
+    .nrk-wide {
+      aspect-ratio: 16 / 9;
+      position: relative;
+    }
+
+    .nrk-wide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nrk-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.6);
+      padding: 10px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .nrk-btn {
+      background: var(--accent);
+      color: #000;
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 6px;
+    }
+
+    .meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .info-list li {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 28px;
+      padding: 12px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
     }
   </style>
 </head>
+
 <body>
   <div class="wrap">
+
     <header>
       <div class="avatar">
         <img src="assets/images/profile.jpg" alt="Phillip Lusk">
       </div>
+
       <div class="meta">
         <h1>Phillip Grindvold Lusk <span class="tag">— Innholdsprodusent & Utdannet Journalist</span></h1>
-        <p class="lead">Jeg lager innhold som treffer unge målgrupper — fra idé til ferdig video. Erfaring fra NRK Unormal, TV 2, Student-TV og mer. Resiliens, energi og mye idéer.</p>
+        <p class="lead">
+          Jeg lager innhold som treffer unge målgrupper — fra idé til ferdig video. Erfaring fra NRK Unormal, TV 2 og mer.
+        </p>
+
         <ul class="info-list">
           <li>📧 phillipglusk@hotmail.com</li>
           <li>📞 948 76 520</li>
-          <li class="muted">Basert i: Nøtterøy</li>
         </ul>
       </div>
     </header>
 
     <div class="grid">
       <main>
+        <!-- GT-SUPPS -->
         <section class="panel section">
-          <h2>Videoer & Demoer</h2>
-          <p class="muted">Her er alle videoene du sendte — trykk play for å se.</p>
+          <h2>Reklame for GT-Supps</h2>
+          <p class="muted">Reklameinnhold produsert for GT-Supps – reklamefilm og TikTok-format.</p>
 
           <div class="videos">
             <div class="video-card">
-              <iframe src="https://www.tiktok.com/embed/v2/7490948469209795862" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="NRK Unormal - podtok"></iframe>
+              <iframe
+                src="https://www.youtube.com/embed/4uuXV3VtYAc"
+                allowfullscreen>
+              </iframe>
             </div>
 
             <div class="video-card">
-              <iframe src="https://www.tiktok.com/embed/v2/7501773884841086230" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="NRK Unormal - eksamen"></iframe>
+              <iframe
+                src="https://www.tiktok.com/embed/v2/7584823430873189654"
+                allowfullscreen>
+              </iframe>
             </div>
-
-            <div class="video-card">
-              <iframe src="https://www.tiktok.com/embed/v2/7385543883071048992" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="NRK Unormal - fem på gaten"></iframe>
-            </div>
-
-            <div class="video-card">
-              <iframe src="https://www.tiktok.com/embed/v2/7338777196745559328" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="TV2 - lønnsoppgjør"></iframe>
-            </div>
-
-            <div class="video-card">
-              <iframe src="https://www.tiktok.com/embed/v2/7347304510974348576" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="TV2 - valpeyoga"></iframe>
-            </div>
-
-            <div class="video-card">
-              <iframe src="https://www.youtube.com/embed/smUMtELMA8Y" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Lusk og Moe"></iframe>
-            </div>
-
-            <div class="video-card">
-              <iframe src="https://www.youtube.com/embed/A-UQc0PS7EI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Close Up"></iframe>
-            </div>
-
-            <div class="video-card" style="padding:14px;text-align:left;">
-              <strong>Radio / Lyd:</strong>
-              <p class="muted" style="margin:6px 0 8px 0">Programleder-praksis (Radio Volda):</p>
-              <a href="https://www.nernett.no/hor-torsdagens-ettermiddagssending/175448" target="_blank" rel="noopener noreferrer">Hør et utdrag fra sendingen</a>
-            </div>
-
           </div>
         </section>
 
+        <!-- SKITNE JOHNNY -->
         <section class="panel section">
-          <h2>Om meg</h2>
-          <p class="muted">Jeg er en 23 år gammel dyslektiker fra Nøtterøy med stor erfaring innen SOME-innhold for unge målgrupper. Jeg har jobbet som innholdsprodusent for NRK Unormal og hatt praksis hos TV 2, og er trygg foran kamera. Jeg jobber fra idé til publisert format — regi, klipp, manus og publisering.</p>
+          <h2>Skitne Johnny</h2>
+          <p class="muted">Kortfilm laget på 48 timer – idé, regi og klipp.</p>
+
+          <div class="videos">
+            <div class="youtube-card">
+              <iframe
+                src="https://www.youtube.com/embed/-Z3o1yfbovk"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
         </section>
 
+        <!-- NRK NEWTON -->
+        <section class="panel section">
+          <h2>NRK Newton</h2>
+          <p class="muted">Deltaker i Newton-episode på NRK Super.</p>
+
+          <div class="videos">
+            <div class="nrk-wide">
+              <img src="assets/images/newton-thumb.png" alt="Phillip i NRK Newton">
+              <div class="nrk-overlay">
+                Se meg i Newton – NRK Super<br>
+                <a
+                  class="nrk-btn"
+                  href="https://tv.nrk.no/serie/newton/sesong/2025/episode/DMPP21503125"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Se på NRK
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TIKTOK -->
+        <section class="panel section">
+          <h2>TikTok-videoer</h2>
+
+          <div class="videos">
+            <div class="video-card"><iframe src="https://www.tiktok.com/embed/v2/7490948469209795862" allowfullscreen></iframe></div>
+            <div class="video-card"><iframe src="https://www.tiktok.com/embed/v2/7501773884841086230" allowfullscreen></iframe></div>
+            <div class="video-card"><iframe src="https://www.tiktok.com/embed/v2/7385543883071048992" allowfullscreen></iframe></div>
+            <div class="video-card"><iframe src="https://www.tiktok.com/embed/v2/7338777196745559328" allowfullscreen></iframe></div>
+            <div class="video-card"><iframe src="https://www.tiktok.com/embed/v2/7347304510974348576" allowfullscreen></iframe></div>
+            <div class="video-card"><iframe src="https://www.tiktok.com/embed/v2/7333615897929583904" allowfullscreen></iframe></div>
+          </div>
+        </section>
+
+        <!-- YOUTUBE -->
+        <section class="panel section">
+          <h2>YouTube-videoer</h2>
+
+          <div class="videos">
+            <div class="youtube-card"><iframe src="https://www.youtube.com/embed/smUMtELMA8Y" allowfullscreen></iframe></div>
+            <div class="youtube-card"><iframe src="https://www.youtube.com/embed/A-UQc0PS7EI" allowfullscreen></iframe></div>
+          </div>
+        </section>
+
+        <!-- LYD -->
+        <section class="panel section">
+          <h2>Radio / Lyd</h2>
+          <p class="muted">Programleder-praksis fra Radio Volda.</p>
+          <a
+            href="https://www.nernett.no/hor-torsdagens-ettermiddagssending/175448"
+            target="_blank"
+            rel="noopener noreferrer">
+            Hør et utdrag fra sendingen
+          </a>
+        </section>
+        <!-- OM MEG -->
+        <section class="panel section">
+          <h2>Om meg</h2>
+          <p class="muted">
+            Jeg er en 23 år gammel dyslektiker med solid erfaring innen SOME-innhold
+            for unge målgrupper. Jeg har jobbet som innholdsprodusent for NRK Unormal
+            og hatt praksis hos TV 2. Jeg er trygg foran kamera og jobber fra idé
+            til ferdig publisert innhold — regi, klipp, manus og publisering.
+          </p>
+        </section>
+
+        <!-- PROSJEKTER & ERFARING -->
         <section class="panel section">
           <h2>Prosjekter & Erfaring</h2>
+
           <div class="projects">
-            <div class="project"><strong>Innholdsprodusent — NRK Unormal</strong><div class="muted">6. mai 2024 – 30. juni 2025. Ansvar for idé, regi, klipp og publisering (TikTok)</div></div>
-            <div class="project"><strong>Praktikant — TV 2</strong><div class="muted">15. jan 2024 – 22. mars 2024. Produksjon av SOME-innhold for TV 2.</div></div>
-            <div class="project"><strong>Student-TV / Radio Volda</strong><div class="muted">Programleder og produsent for student-TV og radiosendinger.</div></div>
-            <div class="project"><strong>Omsorgs- og frivillig erfaring</strong><div class="muted">Ledsager, nattvakt og som sommervikar i omsorgsbolig.</div></div>
+            <div class="project">
+              <strong>Innholdsprodusent — NRK Unormal</strong>
+              <div class="muted">
+                Ansvar for idé, regi, klipp og publisering av innhold for TikTok.
+              </div>
+            </div>
+
+            <div class="project">
+              <strong>Praktikant — TV 2</strong>
+              <div class="muted">
+                Produksjon av SOME-innhold og videoreportasjer.
+              </div>
+            </div>
+
+            <div class="project">
+              <strong>Student-TV / Radio Volda</strong>
+              <div class="muted">
+                Programleder og produsent for student-TV og radiosendinger.
+              </div>
+            </div>
+
+            <div class="project">
+              <strong>Omsorgs- og frivillig arbeid</strong>
+              <div class="muted">
+                Ledsager, nattvakt og sommervikar i omsorgsbolig.
+              </div>
+            </div>
           </div>
         </section>
 
       </main>
 
+      <!-- SIDEBAR -->
       <aside>
         <div class="panel section">
           <h2>Kontakt & CV</h2>
-          <p class="muted">Last ned CV eller kontakt meg direkte.</p>
+          <p class="muted">Ta kontakt eller last ned CV.</p>
+
           <ul class="info-list">
             <li>✉️ <a href="mailto:phillipglusk@hotmail.com" style="color:var(--accent)">phillipglusk@hotmail.com</a></li>
             <li>📱 948 76 520</li>
-            <li><a href="assets/files/PHILLIP_GRINDVOLD_LUSK_cv.pdf" download style="color:var(--accent)">Last ned CV (PDF)</a></li>
+            <li>
+              <a
+                href="assets/files/PHILLIP_GRINDVOLD_LUSK_cv.pdf"
+                download
+                style="color:var(--accent)">
+                Last ned CV (PDF)
+              </a>
+            </li>
           </ul>
         </div>
 
         <div class="panel section">
           <h2>Rask CV</h2>
-          <p class="muted"><strong>Utdanning:</strong> Bachelor i journalistikk, Høgskulen i Volda (ferdig sommeren neste semester)</p>
-          <p class="muted"><strong>Ferdigheter:</strong> Adobe-programmer, videoproduksjon, regi, klipp, SOME-strategi, publisering.</p>
+          <p class="muted">
+            <strong>Utdanning:</strong><br>
+            Bachelor i journalistikk, Høgskulen i Volda
+          </p>
+
+          <p class="muted">
+            <strong>Ferdigheter:</strong><br>
+            Adobe Premiere Pro, After Effects, regi, klipp,
+            videoproduksjon, SOME-strategi og publisering.
+          </p>
         </div>
 
         <div class="panel section">
           <h2>Referanser</h2>
-          <p class="muted">Mari Langva — Prosjektleder, NRK Unormal — 994 64 774</p>
+          <p class="muted">
+            Mari Langva<br>
+            Prosjektleder, NRK Unormal<br>
+            📞 994 64 774
+          </p>
         </div>
       </aside>
+
     </div>
 
     <footer>
-      Laget med ❤️ — Phillip Grindvold Lusk • Oppdatert automatisk ved nye commits
+      Laget med ❤️ — Phillip Grindvold Lusk
     </footer>
+
   </div>
 </body>
 </html>
